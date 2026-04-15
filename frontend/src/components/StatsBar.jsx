@@ -11,22 +11,26 @@ const stats = [
 
 function AnimatedCounter({ value, suffix, prefix, inView }) {
   const [count, setCount] = useState(0);
+  const hasAnimated = useRef(false);
 
   useEffect(() => {
-    if (!inView) return;
-    let start = 0;
+    if (!inView || hasAnimated.current) return;
+    hasAnimated.current = true;
+    let startTime = null;
     const duration = 2000;
-    const increment = value / (duration / 16);
-    const timer = setInterval(() => {
-      start += increment;
-      if (start >= value) {
-        setCount(value);
-        clearInterval(timer);
+    
+    const animate = (timestamp) => {
+      if (!startTime) startTime = timestamp;
+      const progress = Math.min((timestamp - startTime) / duration, 1);
+      const eased = 1 - Math.pow(1 - progress, 3); // ease-out cubic
+      setCount(Math.floor(eased * value));
+      if (progress < 1) {
+        requestAnimationFrame(animate);
       } else {
-        setCount(Math.floor(start));
+        setCount(value);
       }
-    }, 16);
-    return () => clearInterval(timer);
+    };
+    requestAnimationFrame(animate);
   }, [inView, value]);
 
   return (

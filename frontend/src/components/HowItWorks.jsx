@@ -65,11 +65,10 @@ export default function HowItWorks() {
           {/* Vertical connecting line */}
           <motion.div
             className="absolute left-6 sm:left-8 top-0 bottom-0 w-px"
-            style={{ backgroundColor: 'rgba(26, 60, 43, 0.12)' }}
+            style={{ transformOrigin: 'top', backgroundColor: 'rgba(26, 60, 43, 0.12)' }}
             initial={{ scaleY: 0 }}
             animate={isInView ? { scaleY: 1 } : {}}
             transition={{ duration: 1.5, ease: [0.16, 1, 0.3, 1] }}
-            style={{ transformOrigin: 'top', backgroundColor: 'rgba(26, 60, 43, 0.12)' }}
           />
           
           {/* Gold progress line */}
