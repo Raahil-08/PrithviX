@@ -1,0 +1,144 @@
+{
+  "theme": "light",
+  "archetype": "1_organic_earthy",
+  "design_philosophy": "A premium, production-style marketing website for Prithvix (AgriTech dealer management app). It feels like a serious premium AgriTech SaaS brand built for rural commerce. Earthy, grounded, trustworthy, modern, and cinematic. Breaking the generic 'startup' aesthetic by embracing organic depth, textured gradients, and high-end editorial typography mixed with high-tech 3D elements.",
+  "colors": {
+    "primary": {
+      "DEFAULT": "#1A3C2B",
+      "foreground": "#FFFFFF",
+      "hover": "#25503B",
+      "description": "Deep forest green. Used for primary branding, buttons in light mode, and major structural accents."
+    },
+    "accent": {
+      "DEFAULT": "#D4A853",
+      "foreground": "#0E1A14",
+      "hover": "#E5BB67",
+      "description": "Warm gold. Used for glowing effects, highlighting key metrics, premium pricing tiers, and subtle borders."
+    },
+    "background": {
+      "light": "#F5F0E8",
+      "dark": "#0E1A14",
+      "DEFAULT": "#F5F0E8"
+    },
+    "foreground": {
+      "light": "#0E1A14",
+      "dark": "#F5F0E8",
+      "DEFAULT": "#0E1A14",
+      "muted_light": "#4A5D53",
+      "muted_dark": "#9CAEA4"
+    },
+    "surface": {
+      "light": "#FFFFFF",
+      "dark": "#16271F",
+      "glass_light": "rgba(245, 240, 232, 0.7)",
+      "glass_dark": "rgba(14, 26, 20, 0.7)"
+    },
+    "border": {
+      "light": "rgba(26, 60, 43, 0.1)",
+      "dark": "rgba(212, 168, 83, 0.15)"
+    }
+  },
+  "typography": {
+    "fonts": {
+      "heading": "Playfair Display",
+      "body": "Plus Jakarta Sans",
+      "mono": "JetBrains Mono"
+    },
+    "scales": {
+      "h1": "text-5xl sm:text-6xl lg:text-7xl font-semibold tracking-tight",
+      "h2": "text-4xl sm:text-5xl lg:text-6xl font-medium tracking-tight",
+      "h3": "text-2xl sm:text-3xl font-medium",
+      "h4": "text-xl font-medium",
+      "body": "text-base sm:text-lg leading-relaxed",
+      "overline": "text-xs sm:text-sm uppercase tracking-[0.2em] font-medium"
+    },
+    "rules": [
+      "Headings (Playfair Display) must be tracked tightly.",
+      "Overlines/labels must use JetBrains Mono, uppercase, wide tracking.",
+      "Body text (Plus Jakarta Sans) must be highly readable with relaxed leading.",
+      "Never center paragraphs. Left-align dense content."
+    ]
+  },
+  "spacing_and_layout": {
+    "section_padding": "py-24 sm:py-32",
+    "container_padding": "px-6 sm:px-8 lg:px-12",
+    "grid_patterns": {
+      "bento_a": "grid-cols-1 md:grid-cols-8 lg:grid-cols-12 gap-8 lg:gap-12",
+      "metrics": "grid-cols-2 md:grid-cols-4 gap-6"
+    },
+    "radius": {
+      "card": "rounded-2xl",
+      "button": "rounded-full",
+      "badge": "rounded-full"
+    },
+    "borders": "Always use 1px subtle borders to define edges. border-[rgba(26,60,43,0.1)] in light mode."
+  },
+  "motion_and_interactions": {
+    "framer_motion_defaults": {
+      "initial": { "opacity": 0, "y": 40 },
+      "whileInView": { "opacity": 1, "y": 0 },
+      "viewport": { "once": true, "margin": "-100px" },
+      "transition": { "duration": 0.8, "ease": [0.16, 1, 0.3, 1] }
+    },
+    "hover_states": "Buttons must shift background color slightly and scale slightly (scale-105) on hover. Cards should gently translate up (-translate-y-1) and cast a diffuse shadow.",
+    "splash_screen": "Requires a dramatic logo reveal using framer-motion (scale up, fade in) against a dark earthy background (#0E1A14). Needs an 'Enter Experience' interactive button that slides the splash screen up to reveal the site."
+  },
+  "components_strategy": {
+    "header": "Crystal glassmorphism sticky header (backdrop-blur-xl bg-[#F5F0E8]/70 in light sections, bg-[#0E1A14]/70 in dark sections). Must have a subtle 1px bottom border.",
+    "buttons": "Primary CTA uses deep forest green (#1A3C2B) in light mode and warm gold (#D4A853) in dark mode. Secondary buttons should be outline with blurred backgrounds.",
+    "forms_and_modals": "Use Shadcn 'Dialog' for the 'Request a Demo' contact form. Use Shadcn 'Input' and 'Button'. Form should be minimalist with floating labels or very clean left-aligned labels.",
+    "carousel": "Use Shadcn 'Carousel' for the testimonials. Style it with 'Editorial Ribbon' aesthetic—generous spacing, Playfair Display quotes.",
+    "marquees": "Slow, organic drift using react-fast-marquee. Used for sponsor logos or an editorial ribbon separator."
+  },
+  "3d_scene_instructions": {
+    "library": "React Three Fiber (@react-three/fiber) + Drei (@react-three/drei)",
+    "description": "A 'Living Crop Intelligence Terrain'. Isometric or slightly angled perspective. An abstract digital agricultural field.",
+    "geometry": "Use planes with displacement maps or instanced meshes (boxes/cylinders) representing crops.",
+    "materials": "MeshStandardMaterial with wireframe=true for some elements to give a 'tech/hologram' feel. Deep greens and glowing gold elements.",
+    "effects": "Floating particles using <Points>. Soft glowing lighting using PointLights with gold (#D4A853) colors. A dark background (#0E1A14) overlay on the canvas so UI text pops over it.",
+    "fallback": "If 3D rendering is complex or fails, use the 'hero_3d_terrain' image from the media block with a slow scale animation."
+  },
+  "media": {
+    "backgrounds": {
+      "dark_texture": "https://static.prod-images.emergentagent.com/jobs/88f8a4a7-6409-4770-9e5d-8a88e41c9388/images/64fc93886b5764828f8a7149937dc2aadfe03a0ca1261bddf682c0994a6ad2c0.png",
+      "light_texture": "https://static.prod-images.emergentagent.com/jobs/88f8a4a7-6409-4770-9e5d-8a88e41c9388/images/45b7037ed3330b9473f252418d312c8d3d299ae2adeb6cdd0aae392430984322.png",
+      "feature_accent": "https://static.prod-images.emergentagent.com/jobs/88f8a4a7-6409-4770-9e5d-8a88e41c9388/images/6631d661b5123d03927edc1e15be02f2c5bba6b29cac2b5cdac6be5742f8ee67.png",
+      "hero_3d_fallback": "https://static.prod-images.emergentagent.com/jobs/88f8a4a7-6409-4770-9e5d-8a88e41c9388/images/d4598409c375f447ac69aa8c21fba64ea7a1f9ae218a874e7fe9f3c4d5f71d58.png"
+    },
+    "photography": {
+      "farmer_tech_1": "https://images.unsplash.com/photo-1586819158505-d7f6227d19d4?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjY2NzF8MHwxfHNlYXJjaHwyfHxmYXJtZXIlMjBzbWFydHBob25lfGVufDB8fHx8MTc3NjI0NTQ5MXww&ixlib=rb-4.1.0&q=85",
+      "farmer_tech_2": "https://images.unsplash.com/photo-1653250862432-dc8068ad7973?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjY2NzF8MHwxfHNlYXJjaHwxfHxmYXJtZXIlMjBzbWFydHBob25lfGVufDB8fHx8MTc3NjI0NTQ5MXww&ixlib=rb-4.1.0&q=85",
+      "farmer_team": "https://images.unsplash.com/photo-1707721691170-bf913a7a6231?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NTYxOTB8MHwxfHNlYXJjaHw0fHxpbmRpYW4lMjBmYXJtZXIlMjBhZ3JpY3VsdHVyZSUyMHRlY2hub2xvZ3l8ZW58MHx8fHwxNzc2MjQ1NDc3fDA&ixlib=rb-4.1.0&q=85"
+    },
+    "logos": {
+      "sponsor_1": "https://images.unsplash.com/photo-1618242556516-6858a8f34cb0?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjY2NzN8MHwxfHNlYXJjaHw0fHxtaW5pbWFsaXN0JTIwbG9nb3xlbnwwfHx8fDE3NzYyNDU0OTF8MA&ixlib=rb-4.1.0&q=85",
+      "sponsor_2": "https://images.unsplash.com/photo-1760037028517-e5cc6e3ebd3e?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjY2NzN8MHwxfHNlYXJjaHwyfHxtaW5pbWFsaXN0JTIwbG9nb3xlbnwwfHx8fDE3NzYyNDU0OTF8MA&ixlib=rb-4.1.0&q=85",
+      "sponsor_3": "https://images.pexels.com/photos/12877878/pexels-photo-12877878.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+      "sponsor_4": "https://images.pexels.com/photos/20716644/pexels-photo-20716644.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940"
+    }
+  },
+  "sections_breakdown": {
+    "splash_screen": "Fullscreen. Background #0E1A14. Prithvix logo centered in Playfair Display (text-6xl). 'Enter' button triggers exit animation.",
+    "hero": "R3F canvas behind the content. Overlay gradients so text is readable. Title: 'Cultivating Rural Commerce'. Subtitle: 'The AI-powered dealer management platform for agricultural input distributors.' CTAs: Request Demo (solid gold), Watch How It Works (glass outline).",
+    "features": "6 features presented via Bento Grid (Mode A) or Sticky Scroll. Feature 1: Farmer Registration & QR ID. Feature 2: Field Visit Logging. Feature 3: AI Product Recommendations. Feature 4: Udhaar/Credit Ledger. Feature 5: Inventory Alerts. Feature 6: Multilingual Agronomist Chat. Mix photography and UI cards.",
+    "stats": "Dark section (#0E1A14 background). Animated counters using framer-motion. Example stats: '10M+ Farmers Registered', '50K+ Dealers', '$2B+ Credit Managed'. Accents in gold.",
+    "how_it_works": "4-step vertical chronological flow. Minimalist line-art or tech nodes connecting steps.",
+    "pricing": "Side-by-side cards. Basic (Light) vs Premium (Dark). Premium uses 'feature_accent' background texture.",
+    "testimonials": "Shadcn Carousel. Off-white background. Elegant serif quotes.",
+    "footer": "Dark mode (#0E1A14). Massive 'PRITHVIX' text at the bottom. Link columns and legal."
+  },
+  "accessibility_and_testing": {
+    "contrast": "Ensure gold text on off-white has sufficient contrast, darken if necessary. White text on dark green must meet APCA standards.",
+    "test_ids": "CRITICAL: All interactive elements MUST include data-testid attributes (e.g., data-testid='splash-enter-btn', data-testid='hero-demo-cta', data-testid='pricing-premium-btn')."
+  },
+  "instructions_to_main_agent": [
+    "Install framer-motion, @react-three/fiber, @react-three/drei, and lucide-react before starting.",
+    "Setup Tailwind config with the specified colors, fonts (Playfair Display, Plus Jakarta Sans, JetBrains Mono), and textures.",
+    "For the Splash Screen, use AnimatePresence to unmount it entirely once the 'Enter' button is clicked.",
+    "Build the 3D scene inside a dedicated component to keep the Hero clean. If R3F causes issues, fallback instantly to the hero_3d_fallback image.",
+    "Use standard raw HTML + Tailwind for creative grids in the Feature section. Do not rely heavily on generic Shadcn cards.",
+    "Integrate Shadcn Dialog for the Demo CTA.",
+    "ONLY use the images provided in the 'media' object. Never use placeholders.",
+    "Apply 'background-image: url(...)' for the textures provided, combined with background-blend-mode: multiply or overlay for depth."
+  ]
+}
