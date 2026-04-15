@@ -76,6 +76,7 @@ export default function DemoModal({ isOpen, onClose }) {
                   className="text-center py-8"
                   initial={{ opacity: 0, scale: 0.9 }}
                   animate={{ opacity: 1, scale: 1 }}
+                  data-testid="demo-success"
                 >
                   <div className="w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4" style={{ backgroundColor: 'rgba(26, 60, 43, 0.1)' }}>
                     <Send size={24} style={{ color: '#1A3C2B' }} />
