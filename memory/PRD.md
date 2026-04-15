@@ -33,6 +33,12 @@ Build a premium, production-style marketing website for Prithvix - an AgriTech d
 - [x] Demo request modal with contact form
 - [x] Premium dark footer with PRITHVIX watermark
 - [x] Mobile responsive with hamburger menu
+- [x] SEO meta tags (title, description, keywords, canonical)
+- [x] Open Graph tags (og:title, og:description, og:image, og:site_name)
+- [x] Twitter Card tags (summary_large_image)
+- [x] Apple mobile web app tags
+- [x] WhatsApp chat widget (floating FAB + tooltip with "Start Chat" CTA)
+- [x] Hero flash fix (removed lazy loading for above-the-fold 3D scene)
 
 ## Prioritized Backlog
 ### P0 (Critical) - All done

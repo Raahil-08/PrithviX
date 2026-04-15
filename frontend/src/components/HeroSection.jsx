@@ -1,8 +1,6 @@
-import { Suspense, lazy } from 'react';
 import { motion } from 'framer-motion';
 import { ArrowRight, ChevronDown } from 'lucide-react';
-
-const Hero3DScene = lazy(() => import('./Hero3DScene'));
+import Hero3DScene from './Hero3DScene';
 
 export default function HeroSection({ onDemoClick }) {
   const scrollToHowItWorks = () => {
@@ -17,20 +15,7 @@ export default function HeroSection({ onDemoClick }) {
       className="relative min-h-screen flex items-center justify-center overflow-hidden"
     >
       {/* 3D Background */}
-      <Suspense
-        fallback={
-          <div
-            className="absolute inset-0"
-            style={{
-              backgroundImage: 'url(https://static.prod-images.emergentagent.com/jobs/88f8a4a7-6409-4770-9e5d-8a88e41c9388/images/d4598409c375f447ac69aa8c21fba64ea7a1f9ae218a874e7fe9f3c4d5f71d58.png)',
-              backgroundSize: 'cover',
-              backgroundPosition: 'center',
-            }}
-          />
-        }
-      >
-        <Hero3DScene />
-      </Suspense>
+      <Hero3DScene />
 
       {/* Gradient overlay for text readability */}
       <div

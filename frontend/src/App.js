@@ -11,6 +11,7 @@ import PricingSection from '@/components/PricingSection';
 import TestimonialsSection from '@/components/TestimonialsSection';
 import Footer from '@/components/Footer';
 import DemoModal from '@/components/DemoModal';
+import WhatsAppWidget from '@/components/WhatsAppWidget';
 
 function App() {
   const [showSplash, setShowSplash] = useState(true);
@@ -37,6 +38,7 @@ function App() {
           </main>
           <Footer />
           <DemoModal isOpen={showDemo} onClose={() => setShowDemo(false)} />
+          <WhatsAppWidget />
         </>
       )}
     </div>
