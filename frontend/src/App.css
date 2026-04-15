@@ -1,34 +1,24 @@
-.App-logo {
-    height: 40vmin;
-    pointer-events: none;
+/* Prithvix Marketing Site Styles */
+
+.App {
+  min-height: 100vh;
+  overflow-x: hidden;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-    .App-logo {
-        animation: App-logo-spin infinite 20s linear;
-    }
+/* Smooth transitions for interactive elements */
+a, button {
+  cursor: pointer;
 }
 
-.App-header {
-    background-color: #0f0f10;
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    font-size: calc(10px + 2vmin);
-    color: white;
+/* Canvas container */
+canvas {
+  display: block;
 }
 
-.App-link {
-    color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-    from {
-        transform: rotate(0deg);
-    }
-    to {
-        transform: rotate(360deg);
-    }
+/* Ensure 3D scene fills container */
+.r3f-canvas-container {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
 }
