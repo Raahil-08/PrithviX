@@ -66,17 +66,7 @@ export default function PricingSection({ onDemoClick }) {
           {plans.map((plan, i) => (
             <motion.div
               key={plan.name}
-              className={`relative rounded-3xl p-8 sm:p-10 border transition-all duration-300 ${
-                plan.highlighted ? "gold-glow-strong" : ""
-              }`}
-              style={{
-                backgroundColor: plan.highlighted
-                  ? "#16271F"
-                  : "rgba(22, 39, 31, 0.5)",
-                borderColor: plan.highlighted
-                  ? "rgba(212, 168, 83, 0.4)"
-                  : "rgba(245, 240, 232, 0.06)",
-              }}
+              className="relative"
               initial={{ opacity: 0, y: 40 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-100px" }}
@@ -87,91 +77,107 @@ export default function PricingSection({ onDemoClick }) {
               }}
               data-testid={`pricing-${plan.name.toLowerCase()}-card`}
             >
-              {/* Recommended badge */}
-              {plan.highlighted && (
-                <div className="absolute -top-3 left-1/2 -translate-x-1/2">
-                  <span
-                    className="inline-flex items-center gap-1.5 px-4 py-1.5 rounded-full font-mono text-xs font-medium"
-                    style={{ backgroundColor: "#D4A853", color: "#0E1A14" }}
-                  >
-                    <Sparkles size={12} />
-                    {copy.pricing.recommended}
-                  </span>
-                </div>
-              )}
-
-              {/* Plan name */}
-              <h3
-                className="font-heading text-2xl font-medium mb-2"
-                style={{ color: "#F5F0E8" }}
-              >
-                {plan.name}
-              </h3>
-              <p
-                className="font-body text-sm mb-6"
-                style={{ color: "#9CAEA4" }}
-              >
-                {plan.description}
-              </p>
-
-              {/* Price */}
-              <div className="flex items-baseline gap-1 mb-8">
-                <span
-                  className="font-mono text-sm"
-                  style={{ color: "#9CAEA4" }}
-                >
-                  INR
-                </span>
-                <span
-                  className="font-heading text-5xl font-semibold"
-                  style={{ color: plan.highlighted ? "#D4A853" : "#F5F0E8" }}
-                >
-                  {plan.price}
-                </span>
-                <span
-                  className="font-body text-sm"
-                  style={{ color: "#9CAEA4" }}
-                >
-                  {plan.period}
-                </span>
-              </div>
-
-              {/* Features */}
-              <ul className="space-y-3 mb-10">
-                {plan.features.map((feature, j) => (
-                  <li key={j} className="flex items-start gap-3">
-                    <Check
-                      size={16}
-                      className="mt-0.5 flex-shrink-0"
-                      style={{
-                        color: plan.highlighted ? "#D4A853" : "#2D6B4A",
-                      }}
-                    />
-                    <span
-                      className="font-body text-sm"
-                      style={{ color: "#9CAEA4" }}
-                    >
-                      {feature}
-                    </span>
-                  </li>
-                ))}
-              </ul>
-
-              {/* CTA */}
-              <button
-                data-testid={`pricing-${plan.name.toLowerCase()}-btn`}
-                onClick={onDemoClick}
-                className="w-full py-4 rounded-full font-body text-sm font-semibold tracking-wide transition-all duration-300 hover:scale-[1.02]"
+              <div
+                className={`relative rounded-3xl p-8 sm:p-10 border transition-transform duration-150 ease-out hover:-translate-y-1 ${
+                  plan.highlighted ? "gold-glow-strong" : ""
+                }`}
                 style={{
-                  backgroundColor: plan.highlighted ? "#D4A853" : "transparent",
-                  color: plan.highlighted ? "#0E1A14" : "#F5F0E8",
-                  border: plan.highlighted
-                    ? "none"
-                    : "1px solid rgba(245,240,232,0.15)",
+                  backgroundColor: plan.highlighted
+                    ? "#16271F"
+                    : "rgba(22, 39, 31, 0.5)",
+                  borderColor: plan.highlighted
+                    ? "rgba(212, 168, 83, 0.4)"
+                    : "rgba(245, 240, 232, 0.06)",
                 }}
               >
-                {plan.cta}
-              </button>
+                {/* Recommended badge */}
+                {plan.highlighted && (
+                  <div className="absolute -top-3 left-1/2 -translate-x-1/2">
+                    <span
+                      className="inline-flex items-center gap-1.5 px-4 py-1.5 rounded-full font-mono text-xs font-medium"
+                      style={{ backgroundColor: "#D4A853", color: "#0E1A14" }}
+                    >
+                      <Sparkles size={12} />
+                      {copy.pricing.recommended}
+                    </span>
+                  </div>
+                )}
+
+                {/* Plan name */}
+                <h3
+                  className="font-heading text-2xl font-medium mb-2"
+                  style={{ color: "#F5F0E8" }}
+                >
+                  {plan.name}
+                </h3>
+                <p
+                  className="font-body text-sm mb-6"
+                  style={{ color: "#9CAEA4" }}
+                >
+                  {plan.description}
+                </p>
+
+                {/* Price */}
+                <div className="flex items-baseline gap-1 mb-8">
+                  <span
+                    className="font-mono text-sm"
+                    style={{ color: "#9CAEA4" }}
+                  >
+                    INR
+                  </span>
+                  <span
+                    className="font-heading text-5xl font-semibold"
+                    style={{ color: plan.highlighted ? "#D4A853" : "#F5F0E8" }}
+                  >
+                    {plan.price}
+                  </span>
+                  <span
+                    className="font-body text-sm"
+                    style={{ color: "#9CAEA4" }}
+                  >
+                    {plan.period}
+                  </span>
+                </div>
+
+                {/* Features */}
+                <ul className="space-y-3 mb-10">
+                  {plan.features.map((feature, j) => (
+                    <li key={j} className="flex items-start gap-3">
+                      <Check
+                        size={16}
+                        className="mt-0.5 flex-shrink-0"
+                        style={{
+                          color: plan.highlighted ? "#D4A853" : "#2D6B4A",
+                        }}
+                      />
+                      <span
+                        className="font-body text-sm"
+                        style={{ color: "#9CAEA4" }}
+                      >
+                        {feature}
+                      </span>
+                    </li>
+                  ))}
+                </ul>
+
+                {/* CTA */}
+                <button
+                  data-testid={`pricing-${plan.name.toLowerCase()}-btn`}
+                  onClick={onDemoClick}
+                  className="w-full py-4 rounded-full font-body text-sm font-semibold tracking-wide transition-all duration-300 hover:scale-[1.02]"
+                  style={{
+                    backgroundColor: plan.highlighted
+                      ? "#D4A853"
+                      : "transparent",
+                    color: plan.highlighted ? "#0E1A14" : "#F5F0E8",
+                    border: plan.highlighted
+                      ? "none"
+                      : "1px solid rgba(245,240,232,0.15)",
+                  }}
+                >
+                  {plan.cta}
+                </button>
+              </div>
             </motion.div>
           ))}
         </div>
