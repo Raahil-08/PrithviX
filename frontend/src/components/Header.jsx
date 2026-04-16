@@ -1,18 +1,20 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X } from "lucide-react";
-
-const navLinks = [
-  { label: "Features", href: "#features" },
-  { label: "How It Works", href: "#how-it-works" },
-  { label: "Pricing", href: "#pricing" },
-  { label: "Testimonials", href: "#testimonials" },
-];
+import { useLanguage } from "@/context/LanguageContext";
 
 export default function Header({ onDemoClick }) {
+  const { copy, language, setLanguage, languageOptions } = useLanguage();
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
-  const [logoLoaded, setLogoLoaded] = useState(true);
+  const [logoLoaded] = useState(false);
+
+  const navLinks = [
+    { label: copy.header.nav[0], href: "#features" },
+    { label: copy.header.nav[1], href: "#how-it-works" },
+    { label: copy.header.nav[2], href: "#pricing" },
+    { label: copy.header.nav[3], href: "#testimonials" },
+  ];
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 50);
@@ -51,23 +53,12 @@ export default function Header({ onDemoClick }) {
               data-testid="header-logo"
               aria-label="PrithviX home"
             >
-              {logoLoaded ? (
-                <span className="nav-logo-shell">
-                  <img
-                    src="/prithvix-logo.jpg"
-                    alt="PrithviX"
-                    className="nav-logo-mark"
-                    onError={() => setLogoLoaded(false)}
-                  />
-                </span>
-              ) : (
-                <span
-                  className="font-heading text-xl sm:text-2xl font-semibold tracking-tight"
-                  style={{ color: "#1A3C2B" }}
-                >
-                  Prithvi<span style={{ color: "#D4A853" }}>x</span>
-                </span>
-              )}
+              <span
+                className="font-heading text-xl sm:text-2xl font-semibold tracking-tight"
+                style={{ color: "#1A3C2B" }}
+              >
+                Prithvi<span style={{ color: "#D4A853" }}>x</span>
+              </span>
             </a>
 
             {/* Desktop Nav */}
@@ -90,6 +81,28 @@ export default function Header({ onDemoClick }) {
               ))}
             </nav>
 
+            <div
+              className="hidden md:flex items-center gap-2 rounded-full border px-1 py-1 mr-4"
+              style={{ borderColor: "rgba(26, 60, 43, 0.12)" }}
+            >
+              {languageOptions.map((option) => (
+                <button
+                  key={option.code}
+                  type="button"
+                  onClick={() => setLanguage(option.code)}
+                  className="min-w-[3rem] rounded-full px-3 py-1.5 font-mono text-[11px] uppercase tracking-[0.18em] transition-all duration-200"
+                  style={{
+                    backgroundColor:
+                      language === option.code ? "#1A3C2B" : "transparent",
+                    color: language === option.code ? "#F5F0E8" : "#4A5D53",
+                  }}
+                  aria-pressed={language === option.code}
+                >
+                  {option.label}
+                </button>
+              ))}
+            </div>
+
             {/* Desktop CTA */}
             <div className="hidden md:flex items-center gap-4">
               <button
@@ -101,7 +114,7 @@ export default function Header({ onDemoClick }) {
                   color: "#F5F0E8",
                 }}
               >
-                Request a Demo
+                {copy.header.demoCta}
               </button>
             </div>
 
@@ -142,6 +155,28 @@ export default function Header({ onDemoClick }) {
                   {link.label}
                 </button>
               ))}
+              <div className="flex items-center gap-2 pt-2">
+                {languageOptions.map((option) => (
+                  <button
+                    key={option.code}
+                    type="button"
+                    onClick={() => setLanguage(option.code)}
+                    className="flex-1 rounded-full border px-3 py-2 font-mono text-[11px] uppercase tracking-[0.18em]"
+                    style={{
+                      borderColor:
+                        language === option.code
+                          ? "#1A3C2B"
+                          : "rgba(26, 60, 43, 0.12)",
+                      backgroundColor:
+                        language === option.code ? "#1A3C2B" : "transparent",
+                      color: language === option.code ? "#F5F0E8" : "#4A5D53",
+                    }}
+                    aria-pressed={language === option.code}
+                  >
+                    {option.label}
+                  </button>
+                ))}
+              </div>
               <button
                 data-testid="mobile-demo-btn"
                 onClick={() => {
@@ -151,7 +186,7 @@ export default function Header({ onDemoClick }) {
                 className="w-full mt-2 px-5 py-3 rounded-full font-body text-sm font-medium"
                 style={{ backgroundColor: "#1A3C2B", color: "#F5F0E8" }}
               >
-                Request a Demo
+                {copy.header.demoCta}
               </button>
             </div>
           </motion.div>

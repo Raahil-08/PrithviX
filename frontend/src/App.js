@@ -12,36 +12,39 @@ import TestimonialsSection from '@/components/TestimonialsSection';
 import Footer from '@/components/Footer';
 import DemoModal from '@/components/DemoModal';
 import WhatsAppWidget from '@/components/WhatsAppWidget';
+import { LanguageProvider } from '@/context/LanguageContext';
 
 function App() {
   const [showSplash, setShowSplash] = useState(true);
   const [showDemo, setShowDemo] = useState(false);
 
   return (
-    <div className="App" data-testid="app-root">
-      <AnimatePresence mode="wait">
-        {showSplash && (
-          <SplashScreen onEnter={() => setShowSplash(false)} />
-        )}
-      </AnimatePresence>
+    <LanguageProvider>
+      <div className="App" data-testid="app-root">
+        <AnimatePresence mode="wait">
+          {showSplash && (
+            <SplashScreen onEnter={() => setShowSplash(false)} />
+          )}
+        </AnimatePresence>
 
-      {!showSplash && (
-        <>
-          <Header onDemoClick={() => setShowDemo(true)} />
-          <main>
-            <HeroSection onDemoClick={() => setShowDemo(true)} />
-            <FeaturesSection />
-            <StatsBar />
-            <HowItWorks />
-            <PricingSection onDemoClick={() => setShowDemo(true)} />
-            <TestimonialsSection />
-          </main>
-          <Footer />
-          <DemoModal isOpen={showDemo} onClose={() => setShowDemo(false)} />
-          <WhatsAppWidget />
-        </>
-      )}
-    </div>
+        {!showSplash && (
+          <>
+            <Header onDemoClick={() => setShowDemo(true)} />
+            <main>
+              <HeroSection onDemoClick={() => setShowDemo(true)} />
+              <FeaturesSection />
+              <StatsBar />
+              <HowItWorks />
+              <PricingSection onDemoClick={() => setShowDemo(true)} />
+              <TestimonialsSection />
+            </main>
+            <Footer />
+            <DemoModal isOpen={showDemo} onClose={() => setShowDemo(false)} />
+            <WhatsAppWidget />
+          </>
+        )}
+      </div>
+    </LanguageProvider>
   );
 }
 

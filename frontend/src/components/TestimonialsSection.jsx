@@ -8,61 +8,31 @@ import {
   Wifi,
   MapPin,
 } from "lucide-react";
+import { useLanguage } from "@/context/LanguageContext";
 
-const testimonials = [
-  {
-    quote:
-      "Prithvix transformed how we manage our 800+ farmer network. The credit ledger alone saved us hours of manual bookkeeping every week.",
-    name: "Ramesh Patel",
-    role: "Agri Input Dealer",
-    location: "Anand, Gujarat",
-  },
-  {
-    quote:
-      "The AI agronomist chat in Hindi is a game-changer. My farmers ask questions directly and get proper recommendations. It builds trust like nothing else.",
-    name: "Sunita Devi",
-    role: "Seed & Fertilizer Dealer",
-    location: "Varanasi, Uttar Pradesh",
-  },
-  {
-    quote:
-      "We went from tracking stock on paper to getting real-time alerts before we run out. My reorder accuracy improved dramatically in just two months.",
-    name: "Vikram Singh",
-    role: "Agricultural Retailer",
-    location: "Kota, Rajasthan",
-  },
-  {
-    quote:
-      "The QR farmer ID cards make every interaction faster. Farmers feel recognized, and we can pull up their complete history in seconds.",
-    name: "Priya Sharma",
-    role: "Multi-brand Agri Dealer",
-    location: "Nagpur, Maharashtra",
-  },
-];
-
-const trustBadges = [
-  { icon: Shield, label: "Made in India" },
-  { icon: Wifi, label: "Offline-First" },
-  { icon: MapPin, label: "Built for Agri Retailers" },
-];
+const trustBadgeIcons = [Shield, Wifi, MapPin];
 
 export default function TestimonialsSection() {
+  const { copy } = useLanguage();
   const [current, setCurrent] = useState(0);
 
-  const next = () => setCurrent((prev) => (prev + 1) % testimonials.length);
+  const next = () =>
+    setCurrent((prev) => (prev + 1) % copy.testimonials.items.length);
   const prev = () =>
     setCurrent(
-      (prev) => (prev - 1 + testimonials.length) % testimonials.length,
+      (prev) =>
+        (prev - 1 + copy.testimonials.items.length) %
+        copy.testimonials.items.length,
     );
 
   // Auto-advance testimonials every 6 seconds
   useEffect(() => {
     const timer = setInterval(() => {
-      next();
+      setCurrent((prev) => (prev + 1) % copy.testimonials.items.length);
     }, 6000);
 
     return () => clearInterval(timer);
-  }, [current]);
+  }, [copy.testimonials.items.length]);
 
   return (
     <section
@@ -86,15 +56,18 @@ export default function TestimonialsSection() {
             className="font-mono text-xs tracking-[0.25em] uppercase mb-4"
             style={{ color: "#D4A853" }}
           >
-            Testimonials
+            {copy.testimonials.overline}
           </p>
           <h2
             className="font-heading text-4xl sm:text-5xl lg:text-6xl font-medium tracking-tight"
             style={{ color: "#1A3C2B" }}
           >
-            Trusted by dealers
-            <br />
-            across rural India
+            {copy.testimonials.title.map((line, index) => (
+              <span key={index}>
+                {index > 0 && <br />}
+                {line}
+              </span>
+            ))}
           </h2>
         </motion.div>
 
@@ -119,7 +92,7 @@ export default function TestimonialsSection() {
               style={{ color: "#1A3C2B" }}
               data-testid={`testimonial-quote-${current}`}
             >
-              "{testimonials[current].quote}"
+              "{copy.testimonials.items[current].quote}"
             </blockquote>
 
             {/* Author */}
@@ -128,16 +101,16 @@ export default function TestimonialsSection() {
                 className="font-body text-base font-semibold"
                 style={{ color: "#1A3C2B" }}
               >
-                {testimonials[current].name}
+                {copy.testimonials.items[current].name}
               </p>
               <p className="font-body text-sm" style={{ color: "#4A5D53" }}>
-                {testimonials[current].role}
+                {copy.testimonials.items[current].role}
               </p>
               <p
                 className="font-mono text-xs mt-1"
                 style={{ color: "#D4A853" }}
               >
-                {testimonials[current].location}
+                {copy.testimonials.items[current].location}
               </p>
             </div>
           </motion.div>
@@ -157,7 +130,7 @@ export default function TestimonialsSection() {
             </button>
 
             <div className="flex items-center gap-2">
-              {testimonials.map((_, i) => (
+              {copy.testimonials.items.map((_, i) => (
                 <button
                   key={i}
                   onClick={() => setCurrent(i)}
@@ -199,19 +172,22 @@ export default function TestimonialsSection() {
           viewport={{ once: true, margin: "-50px" }}
           transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
         >
-          {trustBadges.map((badge, i) => (
+          {copy.testimonials.badges.map((badge, i) => (
             <div
-              key={badge.label}
+              key={badge}
               className="flex items-center gap-2.5 px-5 py-2.5 rounded-full border"
               style={{ borderColor: "rgba(26, 60, 43, 0.1)" }}
               data-testid={`trust-badge-${i}`}
             >
-              <badge.icon size={16} style={{ color: "#D4A853" }} />
+              {(() => {
+                const Icon = trustBadgeIcons[i] || Shield;
+                return <Icon size={16} style={{ color: "#D4A853" }} />;
+              })()}
               <span
                 className="font-body text-sm font-medium"
                 style={{ color: "#1A3C2B" }}
               >
-                {badge.label}
+                {badge}
               </span>
             </div>
           ))}

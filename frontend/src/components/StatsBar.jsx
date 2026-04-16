@@ -1,6 +1,7 @@
 import { useRef, useEffect, useState } from "react";
 import { motion, useInView } from "framer-motion";
 import { Users, Globe, Zap, Eye } from "lucide-react";
+import { useLanguage } from "@/context/LanguageContext";
 
 const stats = [
   {
@@ -70,6 +71,7 @@ function AnimatedCounter({ value, suffix, prefix, inView }) {
 }
 
 export default function StatsBar() {
+  const { copy } = useLanguage();
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
 
@@ -113,7 +115,7 @@ export default function StatsBar() {
                 className="font-body text-sm mt-2"
                 style={{ color: "#9CAEA4" }}
               >
-                {stat.label}
+                {copy.stats.items[i].label}
               </p>
             </motion.div>
           ))}

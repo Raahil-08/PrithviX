@@ -1,8 +1,10 @@
 import { motion } from "framer-motion";
 import { ArrowRight, ChevronDown } from "lucide-react";
 import LightRays from "./LightRays";
+import { useLanguage } from "@/context/LanguageContext";
 
 export default function HeroSection({ onDemoClick }) {
+  const { copy } = useLanguage();
   const scrollToHowItWorks = () => {
     const el = document.getElementById("how-it-works");
     if (el) el.scrollIntoView({ behavior: "smooth" });
@@ -60,7 +62,7 @@ export default function HeroSection({ onDemoClick }) {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.2 }}
         >
-          Dealer Management Platform
+          {copy.hero.overline}
         </motion.p>
 
         {/* Headline */}
@@ -72,11 +74,16 @@ export default function HeroSection({ onDemoClick }) {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1, delay: 0.4, ease: [0.16, 1, 0.3, 1] }}
         >
-          Run your agri dealership
-          <br />
-          with the clarity of
-          <br />
-          <span style={{ color: "#D4A853" }}>modern software.</span>
+          {copy.hero.title.filter(Boolean).map((line, index) => (
+            <span key={index}>
+              {index > 0 && <br />}
+              {index === copy.hero.title.filter(Boolean).length - 1 ? (
+                <span style={{ color: "#D4A853" }}>{line}</span>
+              ) : (
+                line
+              )}
+            </span>
+          ))}
         </motion.h1>
 
         {/* Subtitle */}
@@ -88,9 +95,7 @@ export default function HeroSection({ onDemoClick }) {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.7 }}
         >
-          The AI-powered management platform built for agricultural input
-          dealers across rural India. From farmer registration to credit
-          ledgers, manage everything in one place.
+          {copy.hero.subtitle}
         </motion.p>
 
         {/* CTAs */}
@@ -106,7 +111,7 @@ export default function HeroSection({ onDemoClick }) {
             className="group px-8 py-4 rounded-full font-body text-sm font-semibold tracking-wide transition-all duration-300 hover:scale-105 flex items-center gap-2"
             style={{ backgroundColor: "#D4A853", color: "#0E1A14" }}
           >
-            Request a Demo
+            {copy.hero.primaryCta}
             <ArrowRight
               size={16}
               className="transition-transform duration-300 group-hover:translate-x-1"
@@ -123,7 +128,7 @@ export default function HeroSection({ onDemoClick }) {
               backgroundColor: "rgba(245, 240, 232, 0.05)",
             }}
           >
-            Watch How It Works
+            {copy.hero.secondaryCta}
           </button>
         </motion.div>
 

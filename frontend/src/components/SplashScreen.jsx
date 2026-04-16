@@ -1,9 +1,11 @@
 import { useMemo, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import { useLanguage } from "@/context/LanguageContext";
 
 export default function SplashScreen({ onEnter }) {
+  const { copy } = useLanguage();
   const [isExiting, setIsExiting] = useState(false);
-  const [logoLoaded, setLogoLoaded] = useState(true);
+  const [logoLoaded] = useState(false);
   const [phase, setPhase] = useState("loader");
 
   const showIntroContent = phase === "intro";
@@ -131,7 +133,7 @@ export default function SplashScreen({ onEnter }) {
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.05, duration: 0.6 }}
                 >
-                  Agricultural Intelligence
+                  {copy.splash.overline}
                 </motion.p>
 
                 {/* Logo image */}
@@ -145,22 +147,13 @@ export default function SplashScreen({ onEnter }) {
                     ease: [0.16, 1, 0.3, 1],
                   }}
                 >
-                  {logoLoaded ? (
-                    <img
-                      src="/prithvix-logo.jpg"
-                      alt="PrithviX"
-                      className="splash-logo-mark"
-                      onError={() => setLogoLoaded(false)}
-                    />
-                  ) : (
-                    <h1
-                      className="font-heading text-6xl sm:text-7xl lg:text-8xl font-semibold tracking-tight"
-                      style={{ color: "#F5F0E8" }}
-                    >
-                      Prithvi
-                      <span style={{ color: "#D4A853" }}>x</span>
-                    </h1>
-                  )}
+                  <h1
+                    className="font-heading text-6xl sm:text-7xl lg:text-8xl font-semibold tracking-tight"
+                    style={{ color: "#F5F0E8" }}
+                  >
+                    Prithvi
+                    <span style={{ color: "#D4A853" }}>x</span>
+                  </h1>
                 </motion.div>
 
                 {/* Underline */}
@@ -184,7 +177,7 @@ export default function SplashScreen({ onEnter }) {
                   animate={{ opacity: 1 }}
                   transition={{ delay: 0.28, duration: 0.6 }}
                 >
-                  Powering the future of rural agricultural commerce
+                  {copy.splash.tagline}
                 </motion.p>
               </motion.div>
 
@@ -210,7 +203,7 @@ export default function SplashScreen({ onEnter }) {
                   e.target.style.borderColor = "rgba(212, 168, 83, 0.3)";
                 }}
               >
-                Enter Experience
+                {copy.splash.enter}
               </motion.button>
             </>
           )}
