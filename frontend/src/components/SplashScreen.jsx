@@ -74,7 +74,7 @@ export default function SplashScreen({ onEnter }) {
               muted
               playsInline
               preload="auto"
-              poster="/prithvix-logo.png"
+              poster="/prithvix-logo.jpg"
               onEnded={handleLoaderEnd}
               onError={() => setPhase("intro")}
             >
@@ -147,7 +147,7 @@ export default function SplashScreen({ onEnter }) {
                 >
                   {logoLoaded ? (
                     <img
-                      src="/prithvix-logo.png"
+                      src="/prithvix-logo.jpg"
                       alt="PrithviX"
                       className="splash-logo-mark"
                       onError={() => setLogoLoaded(false)}

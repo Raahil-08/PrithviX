@@ -54,7 +54,7 @@ export default function Header({ onDemoClick }) {
               {logoLoaded ? (
                 <span className="nav-logo-shell">
                   <img
-                    src="/prithvix-logo.png"
+                    src="/prithvix-logo.jpg"
                     alt="PrithviX"
                     className="nav-logo-mark"
                     onError={() => setLogoLoaded(false)}
